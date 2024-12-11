@@ -1,0 +1,25 @@
+-- Film Izleme Platformu
+--> Classlar
+1- Film
+2- Izleyici
+3- Comment
+-
+1- Film Classında oluşturulacak değişkenler ve diğerleri
+a. adı
+b. türü
+c. puanı
+d. izlenme sayisi
+--> Tüm değişkenleri parametre olarak alan constructor
+--> toString() methodu
+2- Izleyici Classında oluşturulacak değişkenler ve diğerleri
+a. ad
+b. yas
+c. izlenen film listesi (Film Class ından elemanları olan list)
+--> Tüm değişkenleri parametre olarak alan constructor
+--> toString() methodu
+2- Comment Classında oluşturulacak değişkenler ve diğerleri
+a. film  (Film Class dan)
+b. izleyici (Izleyici Class dan)
+c. yorum
+--> Tüm değişkenleri parametre olarak alan constructor
+--> toString() methodu
