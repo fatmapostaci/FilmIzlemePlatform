@@ -1,14 +1,18 @@
+import java.util.List;
+
 public class Film {
 
     String name;
     String type;
     double grade;
     int watchedCounter;
+    Comment comment;
 
     public Film(String name, String type, double grade, int watchedCounter) {
         this.name = name;
-        this.type = type;
+        this.comment = comment;
         this.grade = grade;
+        this.type = type;
         this.watchedCounter = watchedCounter;
     }
 
@@ -19,6 +23,7 @@ public class Film {
                 ", type='" + type + '\'' +
                 ", grade=" + grade +
                 ", watchedCounter=" + watchedCounter +
+                ", comment=" + comment +
                 '}';
     }
 }

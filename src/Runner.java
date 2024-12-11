@@ -6,8 +6,8 @@ public class Runner {
     public static void main(String[] args) {
 
         //create film object
-        Film titanic = new Film("Titanic", "dram",8.5,5400);
-        Film lookUp = new Film("Look Up", "animation",7,1200);
+        Film titanic = new Film("Titanic", "Romantic" ,8.5,5400);
+        Film lookUp = new Film("Look Up", "Animation",7,1200);
 
         //create audience and add films that he watched
         Audience fatma = new Audience("Fatma",20);
