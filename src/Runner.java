@@ -1,7 +1,9 @@
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * Runner classındaki main methodu console output verir.
+ * FilmCommentApp altındaki main methodu çalıştırılırsa Frame arayüzü ile görsel olarak veri girişi yapabiliriz
+ */
 public class Runner {
     public static void main(String[] args) {
 
