@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FilmIzlemePlatform.iml" filepath="$PROJECT_DIR$/FilmIzlemePlatform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FilmCommentPlatform.iml" filepath="$PROJECT_DIR$/FilmCommentPlatform.iml" />
     </modules>
   </component>
 </project>

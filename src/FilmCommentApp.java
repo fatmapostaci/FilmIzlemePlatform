@@ -1,30 +1,3 @@
--- Film Izleme Platformu
---> Classlar
-1- Film
-2- Izleyici
-3- Comment
--
-1- Film Classında oluşturulacak değişkenler ve diğerleri
-a. adı
-b. türü
-c. puanı
-d. izlenme sayisi
---> Tüm değişkenleri parametre olarak alan constructor
---> toString() methodu
-2- Izleyici Classında oluşturulacak değişkenler ve diğerleri
-a. ad
-b. yas
-c. izlenen film listesi (Film Class ından elemanları olan list)
---> Tüm değişkenleri parametre olarak alan constructor
---> toString() methodu
-2- Comment Classında oluşturulacak değişkenler ve diğerleri
-a. film  (Film Class dan)
-b. izleyici (Izleyici Class dan)
-c. yorum
---> Tüm değişkenleri parametre olarak alan constructor
---> toString() methodu
-
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -53,7 +26,7 @@ public class FilmCommentApp {
         JPanel listPanel = new JPanel();
         listPanel.setLayout(new BorderLayout());
 
-        JLabel filmListLabel = new JLabel("Available Films:", JLabel.CENTER);
+        JLabel filmListLabel = new JLabel("Available Films:");
         DefaultListModel<String> filmListModel = new DefaultListModel<>();
         for (Film film : films) {
             filmListModel.addElement(film.name + " (" + film.type + ")");
@@ -66,11 +39,7 @@ public class FilmCommentApp {
 
         // Form panel
         JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
-        formPanel.setBorder(BorderFactory.createTitledBorder("Add a Comment"));
-        formPanel.setMinimumSize(new Dimension(400, 200));
-        formPanel.setPreferredSize(new Dimension(400, 200));
-        frame.add(formPanel, BorderLayout.CENTER); // Sadece formu görüntüleyin
+        formPanel.setLayout(new GridLayout(5, 2, 5, 5));
 
         JLabel nameLabel = new JLabel("Audience Name:");
         JTextField nameField = new JTextField();
@@ -87,16 +56,18 @@ public class FilmCommentApp {
         formPanel.add(nameField);
         formPanel.add(ageLabel);
         formPanel.add(ageField);
+        formPanel.add(new JLabel("Selected Film:")); // Placeholder for film selection
+        formPanel.add(new JLabel()); // Empty
         formPanel.add(commentLabel);
         formPanel.add(commentField);
-        formPanel.add(Box.createVerticalStrut(10)); // Spacing
+        formPanel.add(new JLabel()); // Empty cell
         formPanel.add(submitButton);
 
         // Table panel
         JPanel tablePanel = new JPanel();
         tablePanel.setLayout(new BorderLayout());
 
-        JLabel tableLabel = new JLabel("All Comments:", JLabel.CENTER);
+        JLabel tableLabel = new JLabel("All Comments:");
         DefaultTableModel tableModel = new DefaultTableModel(new String[]{"Audience Name", "Film", "Comment"}, 0);
         JTable commentTable = new JTable(tableModel);
         JScrollPane tableScroll = new JScrollPane(commentTable);
@@ -105,7 +76,7 @@ public class FilmCommentApp {
         tablePanel.add(tableScroll, BorderLayout.CENTER);
 
         // Add panels to frame
-        frame.add(listPanel, BorderLayout.NORTH);
+        frame.add(listPanel, BorderLayout.WEST);
         frame.add(formPanel, BorderLayout.CENTER);
         frame.add(tablePanel, BorderLayout.SOUTH);
 

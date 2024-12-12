@@ -5,8 +5,9 @@ public class Comment {
     String comment;
 
     public Comment(Audience audience, Film film, String comment) {
-        this.film = film;
+
         this.audience = audience;
+        this.film = film;
         this.comment = comment;
     }
 
@@ -17,5 +18,9 @@ public class Comment {
                 " film=" + film.name +
                 " comment='" + comment + '\'' +
                 '}';
+    }
+
+    public static void writeComment(){
+
     }
 }
