@@ -8,7 +8,8 @@ public class MailFormatControl {
         "@gmail.com"-> false
         "@gmailcom"-> false
         "gmail.com"-> false
-        "ebıkGabık@gmail.com"-> true
+        "@gmail.dfs -> false
+        "something@something.com"-> true
      */
     public static boolean isFormatAccepted(String s) {
         if( isDotIncluded(s) &&

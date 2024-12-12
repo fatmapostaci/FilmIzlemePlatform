@@ -20,7 +20,4 @@ public class Comment {
                 '}';
     }
 
-    public static void writeComment(){
-
-    }
 }

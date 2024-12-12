@@ -60,12 +60,12 @@ public class FilmCommentApp {
         formPanel.add(nameLabel);
         formPanel.add(nameField);
         formPanel.add(mailLabel);  //1
-        formPanel.add(mailField);   //burası
+        formPanel.add(mailField);   //
         formPanel.add(selectedFilmLabel); //
         formPanel.add(selectedFilmField); // selected film
         formPanel.add(commentLabel);
         formPanel.add(commentField);
-        formPanel.add(new JLabel()); // Empty cell
+        formPanel.add(new JLabel()); // Empty
         formPanel.add(submitButton);
 
 
@@ -102,6 +102,7 @@ public class FilmCommentApp {
                 String name = nameField.getText();
                 String mail = mailField.getText();
 
+                //mail format kontrolünü yapıyor     example -> "something@something.com"-> true
                 boolean isMailValid = MailFormatControl.isFormatAccepted(mail);
                 if (!isMailValid){
                     JOptionPane.showMessageDialog(frame, "Please enter a valid mail!");
@@ -122,15 +123,10 @@ public class FilmCommentApp {
                     return;
                 }
 
-                // Create objects
+                // Create objects from OOP Classes
                 Audience audience = new Audience(name, mail);
                 Film selectedFilm = films.get(selectedFilmIndex);
                 Comment comment = new Comment(audience, selectedFilm, commentText);
-
-                //fill selectedFilmField
-                if(commentTable.getSelectedColumn() > 0)
-                    JOptionPane.showMessageDialog(frame, selectedFilm.name);
-                    //selectedFilmField.setText(selectedFilm.name);
 
                 // Add comment to list and table
                 comments.add(comment);
