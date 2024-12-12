@@ -12,7 +12,7 @@ public class Runner {
         Film lookUp = new Film("Look Up", "Animation",7,1200);
 
         //create audience and add films that he watched
-        Audience fatma = new Audience("Fatma",20);
+        Audience fatma = new Audience("Fatma","ftm@gmail.com");
         fatma.filmList.addAll(List.of(titanic,lookUp));
         System.out.println(fatma);
 

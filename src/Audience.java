@@ -4,12 +4,12 @@ import java.util.List;
 public class Audience {
 
     String name;
-    int age;
+    String mail;
     List<Film> filmList;
 
-    public Audience(String name, int age) {
+    public Audience(String name, String mail) {
         this.name = name;
-        this.age = age;
+        this.mail = mail;
         this.filmList = new ArrayList<>();
     }
 
@@ -17,7 +17,7 @@ public class Audience {
     public String toString() {
         return "Audience{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
+                ", mail=" + mail +
                 ", filmList= " + watchedFilmsNames(this.filmList) +
                 '}';
     }

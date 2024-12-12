@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilmCommentApp {
+
     private static List<Film> films = new ArrayList<>();
     private static List<Comment> comments = new ArrayList<>();
 
@@ -34,6 +35,7 @@ public class FilmCommentApp {
         JList<String> filmList = new JList<>(filmListModel);
         JScrollPane filmListScroll = new JScrollPane(filmList);
 
+
         listPanel.add(filmListLabel, BorderLayout.NORTH);
         listPanel.add(filmListScroll, BorderLayout.CENTER);
 
@@ -41,27 +43,31 @@ public class FilmCommentApp {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridLayout(5, 2, 5, 5));
 
-        JLabel nameLabel = new JLabel("Audience Name:");
+        JLabel nameLabel = new JLabel("  Audience Name:");
         JTextField nameField = new JTextField();
 
-        JLabel ageLabel = new JLabel("Audience Age:");
-        JTextField ageField = new JTextField();
+        JLabel mailLabel = new JLabel("  Audience Mail:");  //1
+        JTextField mailField = new JTextField();  //
 
-        JLabel commentLabel = new JLabel("Comment:");
+        JLabel selectedFilmLabel = new JLabel("Selected Film:");
+        JTextField selectedFilmField = new JTextField();
+
+        JLabel commentLabel = new JLabel("  Comment:");
         JTextField commentField = new JTextField();
 
-        JButton submitButton = new JButton("Submit");
+        JButton submitButton = new JButton("  Submit");
 
         formPanel.add(nameLabel);
         formPanel.add(nameField);
-        formPanel.add(ageLabel);
-        formPanel.add(ageField);
-        formPanel.add(new JLabel("Selected Film:")); // Placeholder for film selection
-        formPanel.add(new JLabel()); // Empty
+        formPanel.add(mailLabel);  //1
+        formPanel.add(mailField);   //burası
+        formPanel.add(selectedFilmLabel); //
+        formPanel.add(selectedFilmField); // selected film
         formPanel.add(commentLabel);
         formPanel.add(commentField);
         formPanel.add(new JLabel()); // Empty cell
         formPanel.add(submitButton);
+
 
         // Table panel
         JPanel tablePanel = new JPanel();
@@ -80,20 +86,31 @@ public class FilmCommentApp {
         frame.add(formPanel, BorderLayout.CENTER);
         frame.add(tablePanel, BorderLayout.SOUTH);
 
+        // Film listesini dinlemek için bir ListSelectionListener ekliyoruz
+        filmList.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) { // Kullanıcı seçimi tamamladıysa
+                String selectedFilm = filmList.getSelectedValue(); // Seçilen film
+                selectedFilmField.setText( selectedFilm );
+            }
+        });
+
+
         // ActionListener for submit button
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = nameField.getText();
-                int age;
-                try {
-                    age = Integer.parseInt(ageField.getText());
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Please enter a valid age!");
+                String mail = mailField.getText();
+
+                boolean isMailValid = MailFormatControl.isFormatAccepted(mail);
+                if (!isMailValid){
+                    JOptionPane.showMessageDialog(frame, "Please enter a valid mail!");
                     return;
                 }
                 String commentText = commentField.getText();
                 int selectedFilmIndex = filmList.getSelectedIndex();
+                String selectedFilmValue = filmList.getSelectedValue();
+
 
                 if (selectedFilmIndex == -1) {
                     JOptionPane.showMessageDialog(frame, "Please select a film from the list!");
@@ -106,9 +123,14 @@ public class FilmCommentApp {
                 }
 
                 // Create objects
-                Audience audience = new Audience(name, age);
+                Audience audience = new Audience(name, mail);
                 Film selectedFilm = films.get(selectedFilmIndex);
                 Comment comment = new Comment(audience, selectedFilm, commentText);
+
+                //fill selectedFilmField
+                if(commentTable.getSelectedColumn() > 0)
+                    JOptionPane.showMessageDialog(frame, selectedFilm.name);
+                    //selectedFilmField.setText(selectedFilm.name);
 
                 // Add comment to list and table
                 comments.add(comment);
@@ -116,7 +138,8 @@ public class FilmCommentApp {
 
                 // Clear fields
                 nameField.setText("");
-                ageField.setText("");
+                mailField.setText("");
+                selectedFilmField.setText("");
                 commentField.setText("");
 
                 // Show confirmation
